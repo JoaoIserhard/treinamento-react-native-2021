@@ -27,7 +27,7 @@ const data = [
   },
   {
     id: 'chl01',
-    imageUri: "https://i.ytimg.com/vi/-FlxM_0S2lA/maxresdefault.jpg",
+    imageUri: "https://i.ytimg.com/vi/DWcJFNfaw9c/maxresdefault.jpg",
     title: "Chill Vibes 1",
     description: "Relax / Study",
   },

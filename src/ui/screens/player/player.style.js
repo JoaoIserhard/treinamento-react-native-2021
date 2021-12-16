@@ -27,12 +27,12 @@ export const styles = StyleSheet.create({
     width,
     paddingHorizontal: 27,
   },
-  tittleContainer: {
+  titleContainer: {
     flexDirection: "row",
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  tittle: {
+  title: {
     fontWeight: 'bold',
     fontSize: 20,
   },

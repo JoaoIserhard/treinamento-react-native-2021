@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, Text, FlatList} from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
 
-import { Screens } from '../../../config/constants'
-import { PlaylistCard, Loader } from '../../components'
-import { fetchPlaylists } from '../../../services/playlist/playlist.service'
+import { Screens } from '../../../config/constants';
+import { PlaylistCard, Loader } from '../../components';
+import { fetchPlaylists } from '../../../services/playlist/playlist.service';
+import { savePlaylists, selectPlaylist } from "../../../state/playlist/playlist.actions";
 
-export const HomeScreen = ({navigation}) => {
+export const HomeScreen = ({ navigation }) => {
+    const dispatch = useDispatch()
+    const playlists = useSelector((store) => store.playlists)
+
     const [isLoading, setIsloading] = useState(false)
-    const [playlists, setPlaylists] = useState([])
 
-    const getPlaylists = useCallback(async() => {
+    const getPlaylists = useCallback(async () => {
         try {
             setIsloading(true)
             const fetchedPlaylists = await fetchPlaylists()
-            setPlaylists(fetchedPlaylists)
-        }catch(e){
+            dispatch(savePlaylists(fetchedPlaylists))
+        } catch (e) {
             console.error(e)
         } finally {
             setIsloading(false)
@@ -25,8 +29,9 @@ export const HomeScreen = ({navigation}) => {
         getPlaylists()
     }, [])
 
-    const handleSelectPlaylist = () => {
+    const handleSelectPlaylist = (id) => {
         navigation.navigate(Screens.PLAYER_SCREEN)
+        dispatch(selectPlaylist(id))
     }
 
     const renderItem = ({ item }) => {
@@ -38,7 +43,7 @@ export const HomeScreen = ({navigation}) => {
                 title={title}
                 duration={item.duration}
                 quantity={item.quantity}
-                onPress={handleSelectPlaylist} />
+                onPress={() => handleSelectPlaylist(item.id)} />
         )
     }
 
