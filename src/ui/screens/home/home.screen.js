@@ -9,7 +9,7 @@ import { savePlaylists, selectPlaylist } from "../../../state/playlist/playlist.
 
 export const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch()
-    const playlists = useSelector((store) => store.playlists)
+    const playlists = useSelector((store) => store.playlistReducer.playlists)
 
     const [isLoading, setIsloading] = useState(false)
 

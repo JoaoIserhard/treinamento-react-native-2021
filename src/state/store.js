@@ -1,4 +1,9 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 import { playlistReducer } from "./playlist/playlist.reducer";
+import Reactotron from "../../ReactotronConfig"
 
-export const store = createStore(playlistReducer)
+const reducer = combineReducers({
+  playlistReducer,
+})
+
+export const store = createStore(reducer, Reactotron.createEnhancer())

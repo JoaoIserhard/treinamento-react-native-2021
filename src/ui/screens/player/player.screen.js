@@ -55,7 +55,7 @@ const SoundBar = () => {
 }
 
 export const PlayerScreen = () => {
-  const selectedPlaylist = useSelector((store) => store.selectedPlaylist)
+  const selectedPlaylist = useSelector((store) => store.playlistReducer.selectedPlaylist)
 
   const [queue, setQueue] = useState([])
   const [currentVideo, setCurrentVideo] = useState(null)
